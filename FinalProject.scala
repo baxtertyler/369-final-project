@@ -15,20 +15,7 @@ object FinalProject {
     val conf = new SparkConf().setAppName("NameOfApp").setMaster("local[4]");
     val sc = new SparkContext(conf);
 
-    val cities: Array[(Double, Double)] = processCities(sc)
-    cities.foreach(println)
   }
 
-  def processCities(sc: SparkContext): Array[(Double, Double)] = {
-    val cities = sc.textFile("./src/main/scala/FinalProject/cities.txt")
-    cities
-      .map(x => x.split(","))
-      .map({case Array(x, y) => (x.trim.toDouble.toString.take(5).toDouble, y.trim.toDouble.toString.take(5).toDouble)})
-      .collect()
-  }
-
-  def getClusters(cities: Array[(Double, Double)]): Unit = {
-
-  }
 
 }
